@@ -35,11 +35,11 @@ const ActionCreator = {
 };
 
 const DataOperation = {
-  loadFilms: () => (dispatch, getState, api) => {
+  loadMovies: () => (dispatch, getState, api) => {
     return api.get(`/films`)
       .then(({data}) => {
         const movies = adapterMovies(data);
-        dispatch(ActionCreator.loadFilms(movies));
+        dispatch(ActionCreator.loadMovies(movies));
       });
   },
   loadPromoMovie: () => (dispatch, getState, api) => {

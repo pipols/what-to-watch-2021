@@ -49,7 +49,7 @@ const Main = () => {
     </section>
 
     <div className="page-content">
-      <Catalog />
+      {/* <Catalog /> */}
       <Footer />
     </div>
     </ >
