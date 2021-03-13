@@ -14,18 +14,20 @@ const App = () => {
         <Route exact path="/" >
           <Main />
         </Route>
-        
+
         <Route path="/login" >
           <SignIn />
         </Route>
-        
+
         <Route path="/mylist" >
           <MyList />
         </Route>
 
-        <Route exact path="/films/:id?" >
-          <Movie />
-        </Route>
+        <Route path="/films/:id?" exact render={({match}) => {
+          const id = +match.params.id;
+          return <Movie movieId={id} />;
+        }}/>
+
 
         <Route path="/films/:id/review" >
           <Review />
