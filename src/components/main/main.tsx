@@ -1,32 +1,43 @@
 import * as React from "react"
-import Header from "../header/header";
 import Catalog from "../catalog/catalog";
 import Footer from "../footer/footer";
-import { MovieClassName } from "../../const/common";
+import Logo from "../logo/logo";
+import UserBlock from "../userBlock/userBlock";
+import {MovieType} from "../../types";
+import { connect } from 'react-redux';
+import {getPromoMovie} from "../../reducer/data/selector.js";
 
-const Main = () => {
+type Props = {
+  promoMovie: MovieType,
+};
+
+const Main = (props: Props) => {
+  const {promoMovie} = props;
+
   return (
     <>
     <section className="movie-card">
       <div className="movie-card__bg">
-        <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+        <img src={promoMovie.backgroundImage} alt={promoMovie.name} />
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
-
-      <Header className={MovieClassName.MOVIE_CARD_HEAD} />
+      <header className="page-header movie-card__head">
+        <Logo />
+        <UserBlock />
+      </header>
 
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
-            <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+            <img src={promoMovie.posterImage} alt={`${promoMovie.name} poster`} width="218" height="327" />
           </div>
 
           <div className="movie-card__desc">
-            <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+            <h2 className="movie-card__title">{promoMovie.name}</h2>
             <p className="movie-card__meta">
-              <span className="movie-card__genre">Drama</span>
-              <span className="movie-card__year">2014</span>
+              <span className="movie-card__genre">{promoMovie.genre}</span>
+              <span className="movie-card__year">{promoMovie.released}</span>
             </p>
 
             <div className="movie-card__buttons">
@@ -49,11 +60,15 @@ const Main = () => {
     </section>
 
     <div className="page-content">
-      {/* <Catalog /> */}
+      <Catalog />
       <Footer />
     </div>
     </ >
   );
 };
 
-export default Main;
+const mapStateToProps = (state) => ({
+  promoMovie: getPromoMovie(state),
+});
+
+export default connect(mapStateToProps)(Main);

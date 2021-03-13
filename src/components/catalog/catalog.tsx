@@ -1,12 +1,20 @@
 import * as React from "react"
 import MovieCard from "../movie-card/movie-card";
+import { connect } from 'react-redux';
+import { getMovies } from './../../reducer/data/selector';
+import { MovieType } from './../../types';
+import { getGenresFromMovies } from "../../utils/utils";
 
 type Props = {
-  genres: string[],
   activeGenre: string,
+  movies: MovieType[],
 };
 
 const Catalog = (props: Props) => {
+  const {movies} = props;
+  const genres = getGenresFromMovies(movies);
+  console.log(genres);
+
   return (
     <section className="catalog">
       <h2 className="catalog__title visually-hidden">Catalog</h2>
@@ -15,45 +23,15 @@ const Catalog = (props: Props) => {
         <li className="catalog__genres-item catalog__genres-item--active">
           <a href="#" className="catalog__genres-link">All genres</a>
         </li>
-        <li className="catalog__genres-item">
-          <a href="#" className="catalog__genres-link">Comedies</a>
+        {genres.map((genre) =>
+          <li className="catalog__genres-item" key={genre}>
+          <a href="#" className="catalog__genres-link">{genre}</a>
         </li>
-        <li className="catalog__genres-item">
-          <a href="#" className="catalog__genres-link">Crime</a>
-        </li>
-        <li className="catalog__genres-item">
-          <a href="#" className="catalog__genres-link">Documentary</a>
-        </li>
-        <li className="catalog__genres-item">
-          <a href="#" className="catalog__genres-link">Dramas</a>
-        </li>
-        <li className="catalog__genres-item">
-          <a href="#" className="catalog__genres-link">Horror</a>
-        </li>
-        <li className="catalog__genres-item">
-          <a href="#" className="catalog__genres-link">Kids & Family</a>
-        </li>
-        <li className="catalog__genres-item">
-          <a href="#" className="catalog__genres-link">Romance</a>
-        </li>
-        <li className="catalog__genres-item">
-          <a href="#" className="catalog__genres-link">Sci-Fi</a>
-        </li>
-        <li className="catalog__genres-item">
-          <a href="#" className="catalog__genres-link">Thrillers</a>
-        </li>
+        )}
       </ul>
 
       <div className="catalog__movies-list">
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
+        {movies.map((movie) => <MovieCard movie={movie} key={movie.id} />)}
       </div>
 
       <div className="catalog__more">
@@ -63,4 +41,8 @@ const Catalog = (props: Props) => {
   );
 };
 
-export default Catalog;
+const mapStateToProps = (state) => ({
+  movies: getMovies(state),
+});
+
+export default connect(mapStateToProps)(Catalog);

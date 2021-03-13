@@ -11,10 +11,6 @@
 //   "Thrillers"
 // ];
 
-export enum MovieClassName {
-  MOVIE_CARD_HEAD = "movie-card__head",
-};
-
 export const Error = {
   UNAUTHORIZED: 401,
   NOT_FOUND: 404,
