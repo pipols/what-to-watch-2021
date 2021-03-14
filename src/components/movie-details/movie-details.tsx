@@ -1,12 +1,19 @@
 import * as React from "react";
+import {MovieType} from "../../types";
 
-const MovieDetails = () => {
+type Props = {
+  movie: MovieType,
+};
+
+const MovieDetails = (props: Props) => {
+  const {movie} = props;
+
   return (
     <div className="movie-card__text movie-card__row">
     <div className="movie-card__text-col">
       <p className="movie-card__details-item">
         <strong className="movie-card__details-name">Director</strong>
-        <span className="movie-card__details-value">Wes Andreson</span>
+        <span className="movie-card__details-value">{movie.director}</span>
       </p>
       <p className="movie-card__details-item">
         <strong className="movie-card__details-name">Starring</strong>
@@ -24,11 +31,11 @@ const MovieDetails = () => {
       </p>
       <p className="movie-card__details-item">
         <strong className="movie-card__details-name">Genre</strong>
-        <span className="movie-card__details-value">Comedy</span>
+        <span className="movie-card__details-value">{movie.genre}</span>
       </p>
       <p className="movie-card__details-item">
         <strong className="movie-card__details-name">Released</strong>
-        <span className="movie-card__details-value">2014</span>
+        <span className="movie-card__details-value">{movie.released}</span>
       </p>
     </div>
   </div>

@@ -1,6 +1,10 @@
 import * as React from "react";
+import {MovieType} from "../../types";
 
-const MovieReviews = () => {
+type Props = {
+  movie: MovieType,
+};
+const MovieReviews = (props: Props) => {
   return (
     <div className="movie-card__reviews movie-card__row">
               <div className="movie-card__reviews-col">

@@ -93,9 +93,9 @@ const Movie = (props: Props) => {
               </ul>
             </nav>
 
-            {activeTab === TabName.OVERVIEW && <MovieOverview />}
-            {activeTab === TabName.DETAILS && <MovieDetails />}
-            {activeTab === TabName.REVIEWS && <MovieReviews />}
+            {activeTab === TabName.OVERVIEW && <MovieOverview movie={movie}/>}
+            {activeTab === TabName.DETAILS && <MovieDetails movie={movie}/>}
+            {activeTab === TabName.REVIEWS && <MovieReviews movie={movie}/>}
 
           </div>
         </div>
