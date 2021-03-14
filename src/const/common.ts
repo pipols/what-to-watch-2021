@@ -22,3 +22,9 @@ export const AuthorizationStatus = {
   NO_AUTH: `NO_AUTH`,
   BAD_REQUEST: `BAD_REQUEST`
 };
+
+export enum TabName {
+  OVERVIEW = `OVERVIEW`,
+  DETAILS = `DETAILS`,
+  REVIEWS = `REVIEWS`,
+};

@@ -6,18 +6,32 @@ import UserBlock from "../userBlock/userBlock";
 import {MovieType} from "../../types";
 import { connect } from 'react-redux';
 import { getMovieById, getSimilarMovies } from './../../reducer/data/selector';
+import {useRouteMatch, Link, Switch, Route} from "react-router-dom";
+import MovieOverview from "../movie-overview/movie-overview";
+import MovieDetails from "../movie-details/movie-details";
+import MovieReviews from "../movie-reviews/movie-reviews";
+import Preloader from "../preloader/preloader";
+import {TabName} from "../../const/common";
+import withActiveItem from '../../hocs/with-active-item/with-active-item';
+
+const activeClass = `movie-nav__item--active`;
 
 type Props = {
   movieId: number,
   movie: MovieType,
   similarMovies: MovieType[],
+  onItemClick: (arg: TabName) => TabName, // !
+  activeItem: TabName,
 };
 
 const Movie = (props: Props) => {
-  const {movie, similarMovies} = props;
-  console.log(props.movie.genre);
+  const {movie, similarMovies, activeItem, onItemClick} = props;
+  let activeTab = activeItem || TabName.OVERVIEW;
 
-  return (
+  if (movie === undefined) {
+    return <Preloader />;
+  } else {
+    return (
     <><section className="movie-card movie-card--full">
       <div className="movie-card__hero">
         <div className="movie-card__bg">
@@ -67,35 +81,22 @@ const Movie = (props: Props) => {
           <div className="movie-card__desc">
             <nav className="movie-nav movie-card__nav">
               <ul className="movie-nav__list">
-                <li className="movie-nav__item movie-nav__item--active">
-                  <a href="#" className="movie-nav__link">Overview</a>
+                <li className={`movie-nav__item ${activeTab === TabName.OVERVIEW ? activeClass : ``}`}>
+                  <a className="movie-nav__link" onClick={() => onItemClick(TabName.OVERVIEW)}>Overview</a>
                 </li>
-                <li className="movie-nav__item">
-                  <a href="#" className="movie-nav__link">Details</a>
+                <li className={`movie-nav__item ${activeTab === TabName.DETAILS ? activeClass : ``}`}>
+                  <a className="movie-nav__link" onClick={() => onItemClick(TabName.DETAILS)}>Details</a>
                 </li>
-                <li className="movie-nav__item">
-                  <a href="#" className="movie-nav__link">Reviews</a>
+                <li className={`movie-nav__item ${activeTab === TabName.REVIEWS ? activeClass : ``}`}>
+                  <a className="movie-nav__link" onClick={() => onItemClick(TabName.REVIEWS)}>Reviews</a>
                 </li>
               </ul>
             </nav>
 
-            <div className="movie-rating">
-              <div className="movie-rating__score">{movie.rating}</div>
-              <p className="movie-rating__meta">
-                <span className="movie-rating__level">Very good</span>
-                <span className="movie-rating__count">{`${movie.scoresCount} ratings`}</span>
-              </p>
-            </div>
+            {activeTab === TabName.OVERVIEW && <MovieOverview />}
+            {activeTab === TabName.DETAILS && <MovieDetails />}
+            {activeTab === TabName.REVIEWS && <MovieReviews />}
 
-            <div className="movie-card__text">
-              <p>In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.</p>
-
-              <p>Gustave prides himself on providing first-class service to the hotel's guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.</p>
-
-              <p className="movie-card__director"><strong>{`Director: ${movie.director}`}</strong></p>
-
-              <p className="movie-card__starring"><strong>Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other</strong></p>
-            </div>
           </div>
         </div>
       </div>
@@ -113,6 +114,7 @@ const Movie = (props: Props) => {
         <Footer />
       </div></>
   );
+    };
 };
 
 const mapStateToProps = (state, props) => ({
@@ -120,4 +122,4 @@ const mapStateToProps = (state, props) => ({
   similarMovies: getSimilarMovies(state, props.movieId),
 });
 
-export default connect(mapStateToProps)(Movie);
+export default connect(mapStateToProps)(withActiveItem(Movie));

@@ -10,6 +10,7 @@ module.exports = {
     contentBase: path.join(__dirname, `public`),
     open: true,
     port: 1337,
+    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -19,8 +20,7 @@ module.exports = {
         use: {
           loader: `babel-loader`,
         },
-      },
-      {
+      }, {
         test: /\.(tsx|ts)?$/,
         loader: `ts-loader`
       }

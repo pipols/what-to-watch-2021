@@ -1,6 +1,6 @@
 import * as React from "react"
 import Main from "../main/main";
-import {Router, Route, Switch} from "react-router-dom";
+import {Router as BrowserRouter, Route, Switch} from "react-router-dom";
 import history from "../../history";
 import SignIn from "../signIn/signIn";
 import MyList from "../mylist/myList";
@@ -9,7 +9,7 @@ import Review from "../review/review";
 
 const App = () => {
   return (
-    <Router history={history}>
+    <BrowserRouter history={history}>
       <Switch>
         <Route exact path="/" >
           <Main />
@@ -37,7 +37,7 @@ const App = () => {
 
         </Route>
       </Switch>
-    </Router>
+    </BrowserRouter>
   );
 };
 

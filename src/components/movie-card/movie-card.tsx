@@ -23,4 +23,4 @@ const MovieCard = (props: Props) => {
   );
 };
 
-export default MovieCard;
+export default React.memo(MovieCard);
