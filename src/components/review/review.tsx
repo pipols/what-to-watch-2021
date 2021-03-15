@@ -22,4 +22,4 @@ const Reaview = ({comment}: Props) => {
   );
 };
 
-export default React.memo(Reaview);
+export default Reaview;
