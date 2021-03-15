@@ -25,15 +25,12 @@ type Props = {
 };
 
 class Movie extends React.PureComponent<Props> {
-  componentDidMount() {
-    console.log(`componentDidMount Movie`);
-  }
-
   componentDidUpdate(prevProps) {
-    if (this.props.movie.id !== prevProps.movie.id) {
-      this.props.onItemClick(TabName.OVERVIEW); // !!! шляпа
+    if (prevProps.movie !== undefined) {
+      if (this.props.movie.id !== prevProps.movie.id) {
+        this.props.onItemClick(TabName.OVERVIEW); // !!! +- шляпа
+      }
     }
-    console.log(`componentDidUpdate Movie`);
   }
 
   render() {
