@@ -13,6 +13,7 @@ import MovieReviews from "../movie-reviews/movie-reviews";
 import Preloader from "../preloader/preloader";
 import {TabName} from "../../const/common";
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
+import {DataOperation} from "../../reducer/data/data";
 
 const activeClass = `movie-nav__item--active`;
 
@@ -22,13 +23,19 @@ type Props = {
   similarMovies: MovieType[],
   onItemClick: (arg: TabName) => TabName,
   activeItem: TabName,
+  onCommentsMount: (arg: MovieType[`id`]) => void,
 };
 
 class Movie extends React.PureComponent<Props> {
+  componentDidMount() {
+    this.props.onCommentsMount(this.props.movieId);
+  };
+
   componentDidUpdate(prevProps) {
     if (prevProps.movie !== undefined) {
       if (this.props.movie.id !== prevProps.movie.id) {
         this.props.onItemClick(TabName.OVERVIEW); // !!! +- шляпа
+        this.props.onCommentsMount(this.props.movieId);
       }
     }
   }
@@ -131,4 +138,10 @@ const mapStateToProps = (state, props) => ({
   similarMovies: getSimilarMovies(state, props.movieId),
 });
 
-export default connect(mapStateToProps)(withActiveItem(Movie));
+const mapDispatchToProps = (dispatch) => ({
+  onCommentsMount(id) {
+    dispatch(DataOperation.loadComments(id));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withActiveItem(Movie));
