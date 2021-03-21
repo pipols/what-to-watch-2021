@@ -31,6 +31,7 @@ const Catalog = (props: Props) => {
       </ul>
 
       <div className="catalog__movies-list">
+        {/* @ts-ignore: Unreachable code error */}
         {movies.map((movie) => <MovieCard movie={movie} key={movie.id} />)}
       </div>
 

@@ -122,6 +122,7 @@ class Movie extends React.PureComponent<Props> {
             <h2 className="catalog__title">More like this</h2>
 
             <div className="catalog__movies-list">
+              {/* @ts-ignore: Unreachable code error */}
               {similarMovies.map((movie) => <MovieCard movie={movie} key={movie.id} />)}
             </div>
           </section>
