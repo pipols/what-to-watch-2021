@@ -4,9 +4,8 @@ import Logo from "../logo/logo";
 import MovieCard from "../movie-card/movie-card";
 import UserBlock from "../userBlock/userBlock";
 import {MovieType} from "../../types";
-import { connect } from 'react-redux';
-import { getMovieById, getSimilarMovies } from './../../reducer/data/selector';
-import {useRouteMatch, Link, Switch, Route} from "react-router-dom";
+import {connect} from "react-redux";
+import {getMovieById, getSimilarMovies} from "./../../reducer/data/selector";
 import MovieOverview from "../movie-overview/movie-overview";
 import MovieDetails from "../movie-details/movie-details";
 import MovieReviews from "../movie-reviews/movie-reviews";
@@ -18,18 +17,18 @@ import {DataOperation} from "../../reducer/data/data";
 const activeClass = `movie-nav__item--active`;
 
 type Props = {
-  movieId: number,
-  movie: MovieType,
-  similarMovies: MovieType[],
-  onItemClick: (arg: TabName) => TabName,
-  activeItem: TabName,
-  onCommentsMount: (arg: MovieType[`id`]) => void,
+  movieId: number;
+  movie: MovieType;
+  similarMovies: MovieType[];
+  onItemClick: (arg: TabName) => TabName;
+  activeItem: TabName;
+  onCommentsMount: (arg: MovieType[`id`]) => void;
 };
 
 class Movie extends React.PureComponent<Props> {
   componentDidMount() {
     this.props.onCommentsMount(this.props.movieId);
-  };
+  }
 
   componentDidUpdate(prevProps) {
     if (prevProps.movie !== undefined) {
@@ -123,16 +122,16 @@ class Movie extends React.PureComponent<Props> {
 
             <div className="catalog__movies-list">
               {/* @ts-ignore: Unreachable code error */}
-              {similarMovies.map((movie) => <MovieCard movie={movie} key={movie.id} />)}
+              {similarMovies.map((mov) => <MovieCard movie={mov} key={mov.id} />)}
             </div>
           </section>
 
           <Footer />
         </div></>
-    );
-      };
+      );
+    }
   }
-};
+}
 
 const mapStateToProps = (state, props) => ({
   movie: getMovieById(state, props.movieId),

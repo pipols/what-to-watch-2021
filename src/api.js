@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const createAPI = (onResponse) => {
+const createAPI = () => {
   const api = axios.create({
     baseURL: `https://htmlacademy-react-3.appspot.com/wtw`,
     timeout: 5000,
@@ -12,9 +12,6 @@ const createAPI = (onResponse) => {
   };
 
   const onFail = (err) => {
-    const {response} = err;
-    onResponse(response);
-
     throw err;
   };
 

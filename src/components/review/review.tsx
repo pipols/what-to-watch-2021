@@ -2,7 +2,7 @@ import * as React from "react";
 import {CommentType} from "../../types";
 
 type Props = {
-  comment: CommentType,
+  comment: CommentType;
 };
 
 const Reaview = ({comment}: Props) => {

@@ -7,7 +7,7 @@ const AddReview = () => {
   return (
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
-         <div className="movie-card__bg">
+        <div className="movie-card__bg">
           <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
         </div>
 

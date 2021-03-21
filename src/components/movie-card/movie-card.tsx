@@ -1,5 +1,5 @@
 import * as React from "react";
-import { MovieType } from "../../types";
+import {MovieType} from "../../types";
 import {Link} from "react-router-dom";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 
@@ -16,15 +16,15 @@ const clearTimer = (cb) => {
 };
 
 type Props = {
-  movie: MovieType,
-  activeItem: true | null,
-  onItemClick: (arg: true | null) => true | null,
+  movie: MovieType;
+  activeItem: true | null;
+  onItemClick: (arg: true | null) => true | null;
 };
 
 const MovieCard = (props: Props) => {
   const {movie, activeItem, onItemClick} = props;
   const {previewImage, name, id, previewVideoLink} = movie;
-  console.log(activeItem);
+
   return (
     <article
       onMouseEnter={() => setTimer(true, onItemClick)}

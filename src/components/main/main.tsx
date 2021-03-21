@@ -1,14 +1,14 @@
-import * as React from "react"
+import * as React from "react";
 import Catalog from "../catalog/catalog";
 import Footer from "../footer/footer";
 import Logo from "../logo/logo";
 import UserBlock from "../userBlock/userBlock";
 import {MovieType} from "../../types";
-import { connect } from 'react-redux';
+import {connect} from "react-redux";
 import {getPromoMovie} from "../../reducer/data/selector.js";
 
 type Props = {
-  promoMovie: MovieType,
+  promoMovie: MovieType;
 };
 
 const Main = (props: Props) => {

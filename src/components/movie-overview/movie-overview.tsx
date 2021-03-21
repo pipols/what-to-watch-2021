@@ -2,7 +2,7 @@ import * as React from "react";
 import {MovieType} from "../../types";
 
 type Props = {
-  movie: MovieType,
+  movie: MovieType;
 };
 
 const MovieOverview = (props: Props) => {

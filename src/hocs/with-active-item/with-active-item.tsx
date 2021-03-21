@@ -1,7 +1,20 @@
 import * as React from "react";
+import {Subtract} from "utility-types";
 
-const withActiveItem = (Component) => (
-  class WithActiveItem extends React.PureComponent {
+interface State {
+  activeItem: void;
+}
+
+interface InjectingProps {
+  activeItem: void;
+  onItemClick: (arg: void) => void;
+}
+
+const withActiveItem = (Component) => {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectingProps>;
+
+  class WithActiveItem extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 
@@ -19,7 +32,6 @@ const withActiveItem = (Component) => (
     }
 
     render() {
-      // @ts-ignore: Unreachable code error
       const {activeItem} = this.state;
 
       return <Component
@@ -28,6 +40,8 @@ const withActiveItem = (Component) => (
         onItemClick={this._setActiveItem} />;
     }
   }
-);
+
+  return WithActiveItem;
+};
 
 export default withActiveItem;

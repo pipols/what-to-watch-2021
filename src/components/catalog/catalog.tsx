@@ -1,19 +1,18 @@
-import * as React from "react"
+import * as React from "react";
 import MovieCard from "../movie-card/movie-card";
-import { connect } from 'react-redux';
-import { getMovies } from './../../reducer/data/selector';
-import { MovieType } from './../../types';
-import { getGenresFromMovies } from "../../utils/utils";
+import {connect} from "react-redux";
+import {getMovies} from "./../../reducer/data/selector";
+import {MovieType} from "./../../types";
+import {getGenresFromMovies} from "../../utils/utils";
 
 type Props = {
-  activeGenre: string,
-  movies: MovieType[],
+  activeGenre: string;
+  movies: MovieType[];
 };
 
 const Catalog = (props: Props) => {
   const {movies} = props;
   const genres = getGenresFromMovies(movies);
-  console.log(genres);
 
   return (
     <section className="catalog">
@@ -25,8 +24,8 @@ const Catalog = (props: Props) => {
         </li>
         {genres.map((genre) =>
           <li className="catalog__genres-item" key={genre}>
-          <a href="#" className="catalog__genres-link">{genre}</a>
-        </li>
+            <a href="#" className="catalog__genres-link">{genre}</a>
+          </li>
         )}
       </ul>
 
