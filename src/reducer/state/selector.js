@@ -4,7 +4,7 @@ import {getFilms} from "../data/selector";
 
 const NAME_SPACE = NameSpace.STATE;
 
-export const getGenre = (state) => state[NAME_SPACE].genre;
+export const getActiveGenre = (state) => state[NAME_SPACE].activeGenre;
 
 export const getId = (state) => state[NAME_SPACE].id;
 export const getFilm = createSelector(

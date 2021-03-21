@@ -1,16 +1,3 @@
-// export const GENRES: string[] = [
-//   "All genres",
-//   "Comedies",
-//   "Crime",
-//   "Documentary",
-//   "Dramas",
-//   "Horror",
-//   "Kids & Family",
-//   "Romance",
-//   "Sci-Fi",
-//   "Thrillers"
-// ];
-
 export const Error = {
   UNAUTHORIZED: 401,
   NOT_FOUND: 404,
@@ -28,3 +15,5 @@ export enum TabName {
   DETAILS = `DETAILS`,
   REVIEWS = `REVIEWS`,
 };
+
+export const DEFAULT_GENRE = `All genres`;
