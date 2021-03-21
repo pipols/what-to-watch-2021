@@ -3,7 +3,7 @@ import MovieCard from "../movie-card/movie-card";
 import {connect} from "react-redux";
 import {getMovies} from "./../../reducer/data/selector";
 import {MovieType} from "./../../types";
-import {getGenresFromMovies} from "../../utils/utils";
+import {getGenresFromMovies, getMoviesByGenre} from "../../utils/utils";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import {DEFAULT_GENRE} from "../../const/common";
 
@@ -28,10 +28,10 @@ class Catalog extends React.PureComponent<Props> {
   }
 
   render() {
-    const {movies, activeItem} = this.props;
-    const genres = getGenresFromMovies(movies);
+    const {activeItem} = this.props;
+    const genres = getGenresFromMovies(this.props.movies);
     const activeGenre = activeItem || DEFAULT_GENRE;
-    const 
+    const movies = getMoviesByGenre(this.props.movies, activeGenre);
 
     return (
       <section className="catalog">
