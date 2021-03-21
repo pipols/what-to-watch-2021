@@ -1,18 +1,27 @@
 import {extend} from "../../utils/utils";
-import {DEFAULT_GENRE} from "../../const/common";
+import {DEFAULT_GENRE, MoviesCount} from "../../const/common";
 
 const initialState = {
   activeGenre: DEFAULT_GENRE,
+  shownMoviesStack: MoviesCount.DEFAULT,
 };
 
 const ActionType = {
-  SET_GENRE: `SET_GENRE`
+  SET_GENRE: `SET_GENRE`,
+  ADD_MOVIES_STACK: `ADD_MOVIES_STACK`,
+  RESET_MOVIES_STACK: `RESET_MOVIES_STACK`,
 };
 
 const ActionCreator = {
   setGenre: (genre) => ({
     type: ActionType.SET_GENRE,
     payload: genre,
+  }),
+  addMoviesStack: () => ({
+    type: ActionType.ADD_MOVIES_STACK,
+  }),
+  resetMoviesStack: () => ({
+    type: ActionType.RESET_MOVIES_STACK,
   })
 };
 
@@ -21,6 +30,14 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_GENRE:
       return extend(state, {
         activeGenre: action.payload
+      });
+    case ActionType.ADD_MOVIES_STACK:
+      return extend(state, {
+        shownMoviesStack: state.shownMoviesStack + MoviesCount.ADD
+      });
+    case ActionType.RESET_MOVIES_STACK:
+      return extend(state, {
+        shownMoviesStack: MoviesCount.DEFAULT
       });
   }
 
