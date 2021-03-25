@@ -8,6 +8,7 @@ const initialState = {
 
 const ActionType = {
   SET_GENRE: `SET_GENRE`,
+  RESET_GENRE: `RESET_GENRE`,
   ADD_MOVIES_STACK: `ADD_MOVIES_STACK`,
   RESET_MOVIES_STACK: `RESET_MOVIES_STACK`,
 };
@@ -16,6 +17,10 @@ const ActionCreator = {
   setGenre: (genre) => ({
     type: ActionType.SET_GENRE,
     payload: genre,
+  }),
+  resetGenre: () => ({
+    type: ActionType.RESET_GENRE,
+    payload: DEFAULT_GENRE,
   }),
   addMoviesStack: () => ({
     type: ActionType.ADD_MOVIES_STACK,
