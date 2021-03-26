@@ -21,7 +21,7 @@ class GenresList extends React.PureComponent<Props> {
     evt.preventDefault();
     this.props.setGenre(genre);
     this.props.onItemClick(genre);
-  };
+  }
 
   componentDidUpdate() {
     this.props.resetMovieStack();
@@ -37,19 +37,19 @@ class GenresList extends React.PureComponent<Props> {
 
     return (
       <ul className="catalog__genres-list">
-      {genres.map((genre) =>
-        <li className={`catalog__genres-item ${activeGenre === genre ? ACTIVE_GENRE_CLASS : ``}`} key={genre}>
-          <a
-            onClick={(evt) => this.onGenreClick(evt, genre)}
-            href="#"
-            className="catalog__genres-link">{genre}
-          </a>
-        </li>
-     )}
-    </ul>
+        {genres.map((genre) =>
+          <li className={`catalog__genres-item ${activeGenre === genre ? ACTIVE_GENRE_CLASS : ``}`} key={genre}>
+            <a
+              onClick={(evt) => this.onGenreClick(evt, genre)}
+              href="#"
+              className="catalog__genres-link">{genre}
+            </a>
+          </li>
+        )}
+      </ul>
     );
   }
-};
+}
 
 const mapStateToProps = (state) => ({
   genres: getGenres(state)
@@ -57,13 +57,13 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setGenre(genre) {
-    dispatch(ActionCreator.setGenre(genre))
+    dispatch(ActionCreator.setGenre(genre));
   },
   resetGenre() {
-    dispatch(ActionCreator.resetGenre())
+    dispatch(ActionCreator.resetGenre());
   },
   resetMovieStack() {
-    dispatch(ActionCreator.resetMoviesStack())
+    dispatch(ActionCreator.resetMoviesStack());
   }
 });
 

@@ -16,7 +16,7 @@ const ShowMore = (props: Props) => {
 
 const mapDispatchToProps = (dispatch) => ({
   addStack() {
-    dispatch(ActionCreator.addMoviesStack())
+    dispatch(ActionCreator.addMoviesStack());
   }
 });
 
