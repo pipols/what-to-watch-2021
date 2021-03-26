@@ -20,5 +20,5 @@ export const DEFAULT_GENRE = `All genres`;
 
 export const MoviesCount = {
   DEFAULT: 8,
-  ADD: 4,
+  ADD: 8,
 };
