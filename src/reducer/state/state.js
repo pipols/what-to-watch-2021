@@ -27,6 +27,7 @@ const ActionCreator = {
   }),
   resetMoviesStack: () => ({
     type: ActionType.RESET_MOVIES_STACK,
+    payload: MoviesCount.DEFAULT,
   })
 };
 
@@ -42,7 +43,7 @@ const reducer = (state = initialState, action) => {
       });
     case ActionType.RESET_MOVIES_STACK:
       return extend(state, {
-        shownMoviesStack: MoviesCount.DEFAULT
+        shownMoviesStack: action.payload
       });
   }
 

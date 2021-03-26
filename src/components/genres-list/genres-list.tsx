@@ -11,6 +11,7 @@ type Props = {
   onItemClick: (genre: string) => string;
   setGenre: (genre: string) => string;
   resetGenre: () => void;
+  resetMovieStack: () => void;
 };
 
 const ACTIVE_GENRE_CLASS = `catalog__genres-item--active`;
@@ -21,6 +22,10 @@ class GenresList extends React.PureComponent<Props> {
     this.props.setGenre(genre);
     this.props.onItemClick(genre);
   };
+
+  componentDidUpdate() {
+    this.props.resetMovieStack();
+  }
 
   componentWillUnmount() {
     this.props.resetGenre();
@@ -56,6 +61,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   resetGenre() {
     dispatch(ActionCreator.resetGenre())
+  },
+  resetMovieStack() {
+    dispatch(ActionCreator.resetMoviesStack())
   }
 });
 

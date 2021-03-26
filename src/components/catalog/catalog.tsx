@@ -18,8 +18,6 @@ class Catalog extends React.PureComponent<Props> {
 
   render() {
     const {movies, isShowMore} = this.props;
-    console.log(movies.length);
-    console.log(isShowMore);
 
     return (
       <section className="catalog">
