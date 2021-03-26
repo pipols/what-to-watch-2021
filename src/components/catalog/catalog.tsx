@@ -2,14 +2,14 @@ import * as React from "react";
 import MovieCard from "../movie-card/movie-card";
 import {connect} from "react-redux";
 import {getMoviesForCatalog} from "../../reducer/data/selector";
-import {getShownMovieStack} from "../../reducer/state/selector";
+import {getIsShownMore} from "../../reducer/state/selector";
 import {MovieType} from "./../../types";
 import ShowMore from "../show-more/show-more";
 import GenresList from "../genres-list/genres-list";
 
 type Props = {
   movies: MovieType[];
-  movieStack: number;
+  isShownMore: boolean;
 };
 
 class Catalog extends React.PureComponent<Props> {
@@ -18,8 +18,9 @@ class Catalog extends React.PureComponent<Props> {
   }
 
   render() {
-    const {movieStack, movies} = this.props;
-    const isShownMore = movieStack < movies.length;
+    const {movies, isShownMore} = this.props;
+    console.log(movies.length);
+    console.log(isShownMore);
 
     return (
       <section className="catalog">
@@ -40,7 +41,7 @@ class Catalog extends React.PureComponent<Props> {
 
 const mapStateToProps = (state) => ({
   movies: getMoviesForCatalog(state),
-  movieStack: getShownMovieStack(state), //
+  isShowMore: getIsShownMore(state),
 });
 
 export default connect(mapStateToProps)(Catalog);

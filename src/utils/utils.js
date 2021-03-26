@@ -11,5 +11,3 @@ export const getGenresFromMovies = (movies) => {
 
   return genres;
 };
-
-export const getMoviesByGenre = (movies, genre) => genre === DEFAULT_GENRE ? movies : movies.filter((movie) => movie.genre === genre);

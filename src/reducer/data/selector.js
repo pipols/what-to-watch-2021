@@ -1,7 +1,7 @@
 import NameSpace from "../name-space";
 import {createSelector} from "reselect";
 import {getActiveGenre} from "../state/selector";
-import {getMoviesByGenre} from "../../utils/utils";
+import {DEFAULT_GENRE} from "../../const/common";
 
 const NAME_SPACE = NameSpace.DATA;
 
@@ -16,8 +16,9 @@ export const getSimilarMovies = createSelector(
     (movies, currentMovie) => movies.filter((movie) => movie.genre === currentMovie.genre)
 );
 
-export const getMoviesForCatalog = createSelector(
+export const getMoviesByGenre = createSelector(
     getMovies,
     getActiveGenre,
-    (movies, genre) => getMoviesByGenre(movies, genre)
+    (movies, genre) =>
+      genre === DEFAULT_GENRE ? movies : movies.filter((movie) => movie.genre === genre)
 );
