@@ -3,7 +3,7 @@ import withActiveItem from './../../hocs/with-active-item/with-active-item';
 import {DEFAULT_GENRE} from "../../const/common";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/state/state";
-import {getGenres} from "../../reducer/state/selector";
+import {getGenres} from "../../reducer/rest-selectors";
 
 type Props = {
   genres: string[];

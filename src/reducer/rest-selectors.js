@@ -6,7 +6,7 @@ import {getGenresFromMovies} from "../utils/utils";
 export const getIsShownMore = createSelector(
     getMoviesByGenre,
     getShownMovieStack,
-    (movies, stack) => movies.length < stack
+    (movies, stack) => movies.length > stack
 );
 
 export const getFilm = createSelector(

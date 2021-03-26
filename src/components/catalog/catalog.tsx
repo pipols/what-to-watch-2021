@@ -1,15 +1,14 @@
 import * as React from "react";
 import MovieCard from "../movie-card/movie-card";
 import {connect} from "react-redux";
-import {getMoviesForCatalog} from "../../reducer/data/selector";
-import {getIsShownMore} from "../../reducer/state/selector";
+import {getMoviesForCatalog, getIsShownMore} from "../../reducer/rest-selectors";
 import {MovieType} from "./../../types";
 import ShowMore from "../show-more/show-more";
 import GenresList from "../genres-list/genres-list";
 
 type Props = {
   movies: MovieType[];
-  isShownMore: boolean;
+  isShowMore: boolean;
 };
 
 class Catalog extends React.PureComponent<Props> {
@@ -18,9 +17,9 @@ class Catalog extends React.PureComponent<Props> {
   }
 
   render() {
-    const {movies, isShownMore} = this.props;
+    const {movies, isShowMore} = this.props;
     console.log(movies.length);
-    console.log(isShownMore);
+    console.log(isShowMore);
 
     return (
       <section className="catalog">
@@ -33,7 +32,7 @@ class Catalog extends React.PureComponent<Props> {
           {movies.map((movie) => <MovieCard movie={movie} key={movie.id} />)}
         </div>
 
-        {isShownMore && <ShowMore />}
+        {isShowMore && <ShowMore />}
       </section>
     );
   }
