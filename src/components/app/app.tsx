@@ -6,6 +6,7 @@ import SignIn from "../signIn/signIn";
 import MyList from "../mylist/myList";
 import Movie from "../movie/movie";
 import Review from "../add-review/add-review";
+import Player from "../player/player";
 
 const App = () => {
   return (
@@ -33,9 +34,11 @@ const App = () => {
           <Review />
         </Route>
 
-        <Route path="/player/:id" >
+        <Route path="/player/:id" exact render={({match}) => {
+          const id = +match.params.id;
+          return <Player movieId={id} />
+        }}/>
 
-        </Route>
       </Switch>
     </BrowserRouter>
   );
