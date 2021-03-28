@@ -29,3 +29,10 @@ export const getRatingMovie = (rating) => {
 
   return rating;
 };
+
+export const getRunTime = (time) => {
+  const hour = Math.trunc(time / 60);
+  const minutes = time % 60;
+
+  return time < 60 ? `${minutes}m` : `${hour}h ${minutes}m`;
+};
