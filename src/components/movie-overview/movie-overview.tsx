@@ -1,5 +1,6 @@
 import * as React from "react";
 import {MovieType} from "../../types";
+import {getRatingMovie} from "../../utils/utils";
 
 type Props = {
   movie: MovieType;
@@ -7,14 +8,15 @@ type Props = {
 
 const MovieOverview = (props: Props) => {
   const {movie} = props;
+  const rating = getRatingMovie(movie.rating);
 
   return (
     <>
     <div className="movie-rating">
-      <div className="movie-rating__score">{movie.scoresCount}</div>
+      <div className="movie-rating__score">{movie.rating}</div>
       <p className="movie-rating__meta">
-        <span className="movie-rating__level">Very good</span>
-        <span className="movie-rating__count">{`${movie.rating} ratings`}</span>
+        <span className="movie-rating__level">{rating}</span>
+        <span className="movie-rating__count">{`${movie.scoresCount} ratings`}</span>
       </p>
     </div>
 

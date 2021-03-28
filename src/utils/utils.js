@@ -14,14 +14,14 @@ export const getGenresFromMovies = (movies) => {
 
 
 export const getRatingMovie = (rating) => {
-  switch (rating) {
-    case rating === MovieRatingNumber.BAD.MIN || rating < MovieRatingNumber.BAD.MAX:
+  switch (true) {
+    case rating < MovieRatingNumber.BAD.MAX:
       return MovieRatingText.BAD;
-    case rating >= MovieRatingNumber.NORMAL.MIN && rating < MovieRatingNumber.NORMAL.MAX:
+    case rating < MovieRatingNumber.NORMAL.MAX:
       return MovieRatingText.NORMAL;
-    case rating >= MovieRatingNumber.GOOD.MIN && rating < MovieRatingNumber.GOOD.MAX:
+    case rating < MovieRatingNumber.GOOD.MAX:
       return MovieRatingText.GOOD;
-    case rating >= MovieRatingNumber.VERY_GOOD.MIN && rating < MovieRatingNumber.VERY_GOOD.MAX:
+    case rating < MovieRatingNumber.VERY_GOOD.MAX:
       return MovieRatingText.VERY_GOOD;
     case rating === MovieRatingNumber.AWESOME:
       return MovieRatingText.AWESOME;
