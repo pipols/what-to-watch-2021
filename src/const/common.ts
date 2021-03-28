@@ -51,3 +51,5 @@ export const MovieRatingNumber = {
   },
   AWESOME: 10,
 };
+
+export const MAX_COUNT_GENRES = 10;

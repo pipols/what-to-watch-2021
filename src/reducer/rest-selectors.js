@@ -2,6 +2,7 @@ import {createSelector} from "reselect";
 import {getMoviesByGenre, getMovies} from "./data/selector";
 import {getShownMovieStack, getId} from "./state/selector";
 import {getGenresFromMovies} from "../utils/utils";
+import {MAX_COUNT_GENRES} from "../const/common";
 
 export const getIsShownMore = createSelector(
     getMoviesByGenre,
@@ -17,7 +18,7 @@ export const getFilm = createSelector(
 
 export const getGenres = createSelector(
     getMovies,
-    (movies) => getGenresFromMovies(movies)
+    (movies) => getGenresFromMovies(movies).slice(0, MAX_COUNT_GENRES)
 );
 
 export const getMoviesForCatalog = createSelector(
