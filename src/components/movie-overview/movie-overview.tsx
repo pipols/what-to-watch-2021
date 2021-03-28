@@ -27,7 +27,7 @@ const MovieOverview = (props: Props) => {
 
       <p className="movie-card__director"><strong>{`Director: ${movie.director}`}</strong></p>
 
-      <p className="movie-card__starring"><strong>Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other</strong></p>
+      <p className="movie-card__starring"><strong>{`Starring: ${movie.starring.join(`, `)}`}</strong></p>
     </div>
     </>
   );
