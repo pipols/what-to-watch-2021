@@ -11,3 +11,8 @@ export const getGenresFromMovies = (movies) => {
 
   return genres;
 };
+
+
+export const getRatingMovie = (rating) => {
+  
+};

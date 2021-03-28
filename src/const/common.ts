@@ -23,3 +23,11 @@ export const MoviesCount = {
   ADD: 8,
   SIMILAR: 4,
 };
+
+export const MovieRating = {
+  BAD: `Bad`,
+  NORMAL: `Normal`,
+  GOOD: `Good`,
+  VERY_GOOD: `Very good`,
+  AWESOME: `Awesome`,
+};
