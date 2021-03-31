@@ -1,6 +1,10 @@
 import * as React from "react";
 
-const Player = () => {
+type Props = {
+  movieId: number;
+};
+
+const Player = (props: Props) => {
   return (
     <div className="player">
       <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
@@ -21,7 +25,7 @@ const Player = () => {
             <svg viewBox="0 0 19 19" width="19" height="19">
               <use xlinkHref="#play-s"></use>
             </svg>
-            <span>Play</span>
+            <span>{`Play ${props.movieId}`}</span>
           </button>
           <div className="player__name">Transpotting</div>
 
