@@ -22,48 +22,41 @@ const SignIn = () => {
           validateOnBlur
           onSubmit={(values) => console.log(values)}
         >
-          {({values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty}) => {
-          <form action="#" onSubmit={handleSubmit} className="sign-in__form">
-            <div className="sign-in__fields">
-
-              {touched.email && errors.email &&
-              <div className="sign-in__message">
-                <p>Please enter a valid email address</p>
-              </div>}
-
-              <div className="sign-in__field">
-                <input
-                  className="sign-in__input"
-                  type="email"
-                  placeholder="Email address"
-                  name="email"
-                  id="user-email"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.email}
-                />
-                <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
-              </div>
-              <div className="sign-in__field">
-                <input
-                  className="sign-in__input"
-                  type="password"
-                  placeholder="Password"
-                  name="password"
-                  id="user-password"
-                />
-                <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
-              </div>
+          {({values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty}) => (
+        <form onSubmit={handleSubmit} className="sign-in__form">
+          <div className="sign-in__fields">
+            <div className="sign-in__field">
+              <input
+                className="sign-in__input"
+                type="email"
+                placeholder="Email address"
+                name="email"
+                id="user-email"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.email}
+              />
+              <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
             </div>
-            <div className="sign-in__submit">
-             <button
-               className="sign-in__btn"
-               type="submit"
-               disabled={isValid && !dirty}
-               >Sign in</button>
+            <div className="sign-in__field">
+              <input
+                className="sign-in__input"
+                type="password"
+                placeholder="Password"
+                name="password"
+                id="user-password"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.password}
+              />
+              <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
             </div>
-          </form>
-          }}
+          </div>
+          <div className="sign-in__submit">
+            <button className="sign-in__btn" type="submit">Sign in</button>
+          </div>
+        </form>
+          )}
         </Formik>
 
       </div>
