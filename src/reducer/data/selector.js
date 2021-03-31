@@ -1,5 +1,7 @@
 import NameSpace from "../name-space";
 import {createSelector} from "reselect";
+import {getActiveGenre} from "../state/selector";
+import {DEFAULT_GENRE, MoviesCount} from "../../const/common";
 
 const NAME_SPACE = NameSpace.DATA;
 
@@ -11,5 +13,14 @@ export const getComments = (state) => state[NAME_SPACE].comments;
 export const getSimilarMovies = createSelector(
     getMovies,
     getMovieById,
-    (movies, currentMovie) => movies.filter((movie) => movie.genre === currentMovie.genre)
+    (movies, currentMovie) => movies
+      .filter((movie) => movie.genre === currentMovie.genre)
+      .slice(0, MoviesCount.SIMILAR)
+);
+
+export const getMoviesByGenre = createSelector(
+    getMovies,
+    getActiveGenre,
+    (movies, genre) =>
+      genre === DEFAULT_GENRE ? movies : movies.filter((movie) => movie.genre === genre)
 );

@@ -1,16 +1,3 @@
-// export const GENRES: string[] = [
-//   "All genres",
-//   "Comedies",
-//   "Crime",
-//   "Documentary",
-//   "Dramas",
-//   "Horror",
-//   "Kids & Family",
-//   "Romance",
-//   "Sci-Fi",
-//   "Thrillers"
-// ];
-
 export const Error = {
   UNAUTHORIZED: 401,
   NOT_FOUND: 404,
@@ -28,3 +15,41 @@ export enum TabName {
   DETAILS = `DETAILS`,
   REVIEWS = `REVIEWS`,
 };
+
+export const DEFAULT_GENRE = `All genres`;
+
+export const MoviesCount = {
+  DEFAULT: 8,
+  ADD: 8,
+  SIMILAR: 4,
+};
+
+export const MovieRatingText = {
+  BAD: `Bad`,
+  NORMAL: `Normal`,
+  GOOD: `Good`,
+  VERY_GOOD: `Very good`,
+  AWESOME: `Awesome`,
+};
+
+export const MovieRatingNumber = {
+  BAD: {
+    MIN: 0,
+    MAX: 3,
+  },
+  NORMAL:  {
+    MIN: 3,
+    MAX: 5,
+  },
+  GOOD: {
+    MIN: 5,
+    MAX: 8,
+  },
+  VERY_GOOD: {
+    MIN: 8,
+    MAX: 10,
+  },
+  AWESOME: 10,
+};
+
+export const MAX_COUNT_GENRES = 10;

@@ -1,48 +1,44 @@
 import * as React from "react";
 import MovieCard from "../movie-card/movie-card";
 import {connect} from "react-redux";
-import {getMovies} from "./../../reducer/data/selector";
+import {getMoviesForCatalog, getIsShownMore} from "../../reducer/rest-selectors";
 import {MovieType} from "./../../types";
-import {getGenresFromMovies} from "../../utils/utils";
+import ShowMore from "../show-more/show-more";
+import GenresList from "../genres-list/genres-list";
 
 type Props = {
-  activeGenre: string;
   movies: MovieType[];
+  isShowMore: boolean;
 };
 
-const Catalog = (props: Props) => {
-  const {movies} = props;
-  const genres = getGenresFromMovies(movies);
+class Catalog extends React.PureComponent<Props> {
+  constructor(props) {
+    super(props);
+  }
 
-  return (
-    <section className="catalog">
-      <h2 className="catalog__title visually-hidden">Catalog</h2>
+  render() {
+    const {movies, isShowMore} = this.props;
 
-      <ul className="catalog__genres-list">
-        <li className="catalog__genres-item catalog__genres-item--active">
-          <a href="#" className="catalog__genres-link">All genres</a>
-        </li>
-        {genres.map((genre) =>
-          <li className="catalog__genres-item" key={genre}>
-            <a href="#" className="catalog__genres-link">{genre}</a>
-          </li>
-        )}
-      </ul>
+    return (
+      <section className="catalog">
+        <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-      <div className="catalog__movies-list">
-        {/* @ts-ignore: Unreachable code error */}
-        {movies.map((movie) => <MovieCard movie={movie} key={movie.id} />)}
-      </div>
+        <GenresList />
 
-      <div className="catalog__more">
-        <button className="catalog__button" type="button">Show more</button>
-      </div>
-    </section>
-  );
-};
+        <div className="catalog__movies-list">
+          {/* @ts-ignore: Unreachable code error */}
+          {movies.map((movie) => <MovieCard movie={movie} key={movie.id} />)}
+        </div>
+
+        {isShowMore && <ShowMore />}
+      </section>
+    );
+  }
+}
 
 const mapStateToProps = (state) => ({
-  movies: getMovies(state),
+  movies: getMoviesForCatalog(state),
+  isShowMore: getIsShownMore(state),
 });
 
 export default connect(mapStateToProps)(Catalog);

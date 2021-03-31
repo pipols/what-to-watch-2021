@@ -1,25 +1,16 @@
 import {extend} from "../../utils/utils";
-import {CardCount} from "../../const/common";
+import {DEFAULT_GENRE, MoviesCount} from "../../const/common";
 
 const initialState = {
-  genre: `All genres`,
-  shownCardsStack: CardCount.INITIAL,
-  isActivePlayer: false,
-  isPagePreloader: true,
-  id: null,
-  isFormDisabled: false
+  activeGenre: DEFAULT_GENRE,
+  shownMoviesStack: MoviesCount.DEFAULT,
 };
 
 const ActionType = {
   SET_GENRE: `SET_GENRE`,
-  GET_FILMS: `GET_FILMS`,
-  SET_ACTIVE_FILM: `SET_ACTIVE_FILM`,
-  ADD_CARDS_STACK: `ADD_CARDS_STACK`,
-  SET_ACTIVE_PLAYER: `SET_ACTIVE_PLAYER`,
-  RESET_STACK: `RESET_STACK`,
-  PAGE_PRELOADER: `PAGE_PRELOADER`,
-  SET_ID: `SET_ID`,
-  SET_FORM_DISABLED_STATUS: `SET_FORM_DISABLED_STATUS`
+  RESET_GENRE: `RESET_GENRE`,
+  ADD_MOVIES_STACK: `ADD_MOVIES_STACK`,
+  RESET_MOVIES_STACK: `RESET_MOVIES_STACK`,
 };
 
 const ActionCreator = {
@@ -27,64 +18,32 @@ const ActionCreator = {
     type: ActionType.SET_GENRE,
     payload: genre,
   }),
-  getFilms: (films) => ({
-    type: ActionType.GET_FILMS,
-    payload: films
+  resetGenre: () => ({
+    type: ActionType.RESET_GENRE,
+    payload: DEFAULT_GENRE,
   }),
-  addCardsStack: () => ({
-    type: ActionType.ADD_CARDS_STACK
+  addMoviesStack: () => ({
+    type: ActionType.ADD_MOVIES_STACK,
   }),
-  setActivePlayer: (bool) => ({
-    type: ActionType.SET_ACTIVE_PLAYER,
-    payload: bool
-  }),
-  resetStack: () => ({
-    type: ActionType.RESET_STACK
-  }),
-  pagePreloader: (bool) => ({
-    type: ActionType.PAGE_PRELOADER,
-    payload: bool
-  }),
-  setId: (id) => ({
-    type: ActionType.SET_ID,
-    payload: id
-  }),
-  setFormDisabledStatus: (bool) => ({
-    type: ActionType.SET_FORM_DISABLED_STATUS,
-    payload: bool
+  resetMoviesStack: () => ({
+    type: ActionType.RESET_MOVIES_STACK,
+    payload: MoviesCount.DEFAULT,
   })
 };
 
-//
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.SET_GENRE:
       return extend(state, {
-        genre: action.payload
+        activeGenre: action.payload
       });
-    case ActionType.ADD_CARDS_STACK:
+    case ActionType.ADD_MOVIES_STACK:
       return extend(state, {
-        shownCardsStack: state.shownCardsStack + CardCount.ADD
+        shownMoviesStack: state.shownMoviesStack + MoviesCount.ADD
       });
-    case ActionType.SET_ACTIVE_PLAYER:
+    case ActionType.RESET_MOVIES_STACK:
       return extend(state, {
-        isActivePlayer: action.payload
-      });
-    case ActionType.RESET_STACK:
-      return extend(state, {
-        shownCardsStack: CardCount.INITIAL
-      });
-    case ActionType.PAGE_PRELOADER:
-      return extend(state, {
-        isPagePreloader: action.payload
-      });
-    case ActionType.SET_ID:
-      return extend(state, {
-        id: action.payload
-      });
-    case ActionType.SET_FORM_DISABLED_STATUS:
-      return extend(state, {
-        isFormDisabled: action.payload
+        shownMoviesStack: action.payload
       });
   }
 
