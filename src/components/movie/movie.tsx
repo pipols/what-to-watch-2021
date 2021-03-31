@@ -13,6 +13,7 @@ import Preloader from "../preloader/preloader";
 import {TabName} from "../../const/common";
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import {DataOperation} from "../../reducer/data/data";
+import MovieCardButtons from "../movie-card-buttons/movie-card-buttons";
 
 const activeClass = `movie-nav__item--active`;
 
@@ -33,7 +34,7 @@ class Movie extends React.PureComponent<Props> {
   componentDidUpdate(prevProps) {
     if (prevProps.movie !== undefined) {
       if (this.props.movie.id !== prevProps.movie.id) {
-        this.props.onItemClick(TabName.OVERVIEW); // !!! +- шляпа
+        this.props.onItemClick(TabName.OVERVIEW);
         this.props.onCommentsMount(this.props.movieId);
       }
     }
@@ -66,22 +67,7 @@ class Movie extends React.PureComponent<Props> {
                 <span className="movie-card__genre">{movie.genre}</span>
                 <span className="movie-card__year">{movie.released}</span>
               </p>
-
-              <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
-              </div>
+              <MovieCardButtons movieId={movie.id} />
             </div>
           </div>
         </div>

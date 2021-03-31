@@ -1,10 +1,6 @@
 import * as React from "react";
 
-type Props = {
-  movieId: number;
-};
-
-const Player = (props: Props) => {
+const Player = () => {
   return (
     <div className="player">
       <video src="#" className="player__video" poster="img/player-poster.jpg"></video>

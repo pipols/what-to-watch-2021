@@ -36,7 +36,7 @@ const App = () => {
 
         <Route path="/player/:id" exact render={({match}) => {
           const id = +match.params.id;
-          return <Player movieId={id} />
+          return <Player movieId={id} />;
         }}/>
 
       </Switch>
