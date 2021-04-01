@@ -1,5 +1,6 @@
-import {extend, objectKeysToCamelCase} from "../../utils/utils";
+import {extend} from "../../utils/utils";
 import {AuthorizationStatus} from "../../const/common";
+import {adapterUser} from "../../adapters/user.js";
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
@@ -54,12 +55,12 @@ const Operation = {
 
   login: (authData) => (dispatch, getState, api) => {
     return api.post(`/login`, {
-      email: authData.login,
+      email: authData.email,
       password: authData.password,
     })
       .then(({data}) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-        dispatch(ActionCreator.setUserData(objectKeysToCamelCase(data)));
+        dispatch(ActionCreator.setUserData(adapterUser(data)));
       });
   },
 };

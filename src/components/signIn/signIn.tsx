@@ -2,19 +2,30 @@ import * as React from "react";
 import Footer from "../footer/footer";
 import Logo from "../logo/logo";
 import {Formik} from "formik";
-import * as yup from "yup";
+import * as Yup from "yup";
+import {connect} from "react-redux";
+import {Operation} from "../../reducer/user/user";
 
-const SignInSchema = yup.object().shape({
-  email: yup.string()
+const SignInSchema = Yup.object().shape({
+  email: Yup.string()
     .email(`Invalid email`)
     .required(`Required`),
-  password: yup.string()
+  password: Yup.string()
     .min(2, `Too Short!`)
     .max(70, `Too Long!`)
     .required(`Required`),
 });
 
-const SignIn = () => {
+type AuthData = {
+  email: string;
+  password: string;
+};
+
+type Props = {
+  onLogin: (authData: AuthData) => void;
+};
+
+const SignIn = (props: Props) => {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -31,7 +42,7 @@ const SignIn = () => {
 
           validateOnBlur
           validationSchema={SignInSchema}
-          onSubmit={(values) => console.log(values)}
+          onSubmit={props.onLogin}
         >
           {({values, errors, touched, handleChange, handleBlur, handleSubmit}) => (
             <form onSubmit={handleSubmit} className="sign-in__form">
@@ -86,4 +97,10 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+const mapDispatchToProps = (dispatch) => ({
+  onLogin(authData) {
+    dispatch(Operation.login(authData));
+  }
+});
+
+export default connect(null, mapDispatchToProps)(SignIn);
