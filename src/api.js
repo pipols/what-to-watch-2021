@@ -1,8 +1,9 @@
-import axios from 'axios';
+import axios from "axios";
+import {BaseUrl} from "./const/common";
 
 const createAPI = () => {
   const api = axios.create({
-    baseURL: `https://htmlacademy-react-3.appspot.com/wtw`,
+    baseURL: `${BaseUrl.BASE}${BaseUrl.PATH_WTW}`,
     timeout: 5000,
     withCredentials: true,
   });

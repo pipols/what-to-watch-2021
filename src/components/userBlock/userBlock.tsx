@@ -1,15 +1,18 @@
 import * as React from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {getAuthorizationStatus} from "../../reducer/user/selector";
-import {AuthorizationStatus, AppRoute} from "../../const/common";
+import {getAuthorizationStatus, getUserData} from "../../reducer/user/selector";
+import {AuthorizationStatus, AppRoute, BaseUrl} from "../../const/common";
+import {UserDataType} from "../../types";
 
 type Props = {
   authorizationStatus: AuthorizationStatus;
+  userData: UserDataType;
 };
 
 const UserBlock = (props: Props) => {
-  const isAuthorizationStatus = props.authorizationStatus === AuthorizationStatus.AUTH;
+  const {authorizationStatus, userData} = props;
+  const isAuthorizationStatus = authorizationStatus === AuthorizationStatus.AUTH;
 
   return (
     <div className="user-block">
@@ -17,7 +20,7 @@ const UserBlock = (props: Props) => {
       {isAuthorizationStatus &&
       <Link to={AppRoute.MY_LIST} >
         <div className="user-block__avatar">
-          <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
+          <img src={`${BaseUrl.BASE}${userData.avatarUrl}`} alt="User avatar" width="63" height="63" />
         </div>
       </Link>}
 
@@ -30,6 +33,7 @@ const UserBlock = (props: Props) => {
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
+  userData: getUserData(state),
 });
 
 export default connect(mapStateToProps)(UserBlock);

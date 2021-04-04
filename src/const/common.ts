@@ -59,3 +59,8 @@ export const AppRoute = {
   LOGIN: `/login`,
   MY_LIST: `/mylist`,
 };
+
+export const BaseUrl = {
+  BASE: `https://htmlacademy-react-3.appspot.com`,
+  PATH_WTW: `/wtw`,
+};
