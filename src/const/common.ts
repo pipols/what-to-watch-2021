@@ -4,10 +4,10 @@ export const Error = {
   BAD_REQUEST: 400
 };
 
-export const AuthorizationStatus = {
-  AUTH: `AUTH`,
-  NO_AUTH: `NO_AUTH`,
-  BAD_REQUEST: `BAD_REQUEST`
+export enum AuthorizationStatus {
+  AUTH = `AUTH`,
+  NO_AUTH = `NO_AUTH`,
+  BAD_REQUEST = `BAD_REQUEST`,
 };
 
 export enum TabName {
@@ -53,3 +53,14 @@ export const MovieRatingNumber = {
 };
 
 export const MAX_COUNT_GENRES = 10;
+
+export const AppRoute = {
+  MAIN: `/`,
+  LOGIN: `/login`,
+  MY_LIST: `/mylist`,
+};
+
+export const BaseUrl = {
+  BASE: `https://htmlacademy-react-3.appspot.com`,
+  PATH_WTW: `/wtw`,
+};

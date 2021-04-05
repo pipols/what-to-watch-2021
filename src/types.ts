@@ -28,3 +28,10 @@ export type CommentType = {
   comment: string,
   date: string,
 };
+
+export type UserDataType = {
+  id: number;
+  email: string;
+  name: string;
+  avatarUrl: string;
+};
