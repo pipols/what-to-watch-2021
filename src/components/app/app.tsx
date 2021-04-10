@@ -30,9 +30,11 @@ const App = (props: Props) => {
             : <SignIn />;
         }} />
 
-        <PrivateRoute path={AppRoute.MY_LIST} >
-          <MyList />
-        </PrivateRoute>
+        <PrivateRoute
+          exact
+          path={AppRoute.MY_LIST}
+          render={() => (<MyList />)}
+        />
 
         <Route path="/films/:id?" exact render={({match}) => {
           const id = +match.params.id;

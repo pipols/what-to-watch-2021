@@ -2,7 +2,7 @@ import * as React from "react";
 import Catalog from "../catalog/catalog";
 import Footer from "../footer/footer";
 import Logo from "../logo/logo";
-import UserBlock from "../userBlock/userBlock";
+import UserBlock from "../user-block/user-block";
 import {MovieType} from "../../types";
 import {connect} from "react-redux";
 import {getPromoMovie} from "../../reducer/data/selector.js";

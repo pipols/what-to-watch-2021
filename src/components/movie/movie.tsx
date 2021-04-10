@@ -2,7 +2,7 @@ import * as React from "react";
 import Footer from "../footer/footer";
 import Logo from "../logo/logo";
 import MovieCard from "../movie-card/movie-card";
-import UserBlock from "../userBlock/userBlock";
+import UserBlock from "../user-block/user-block";
 import {MovieType} from "../../types";
 import {connect} from "react-redux";
 import {getMovieById, getSimilarMovies} from "./../../reducer/data/selector";
