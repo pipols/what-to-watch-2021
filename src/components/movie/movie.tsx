@@ -2,7 +2,7 @@ import * as React from "react";
 import Footer from "../footer/footer";
 import Logo from "../logo/logo";
 import MovieCard from "../movie-card/movie-card";
-import UserBlock from "../userBlock/userBlock";
+import UserBlock from "../user-block/user-block";
 import {MovieType} from "../../types";
 import {connect} from "react-redux";
 import {getMovieById, getSimilarMovies} from "./../../reducer/data/selector";
@@ -13,7 +13,8 @@ import Preloader from "../preloader/preloader";
 import {TabName} from "../../const/common";
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import {DataOperation} from "../../reducer/data/data";
-import MovieCardButtons from "../movie-card-buttons/movie-card-buttons";
+import PlayButton from "../buttons/play/play";
+import InListButton from "../buttons/inList/inList";
 
 const activeClass = `movie-nav__item--active`;
 
@@ -67,7 +68,10 @@ class Movie extends React.PureComponent<Props> {
                 <span className="movie-card__genre">{movie.genre}</span>
                 <span className="movie-card__year">{movie.released}</span>
               </p>
-              <MovieCardButtons movieId={movie.id} />
+              <div className="movie-card__buttons">
+                <PlayButton movieId={movie.id} />
+                <InListButton isFavorite={movie.isFavorite} id={movie.id} />
+              </div>
             </div>
           </div>
         </div>

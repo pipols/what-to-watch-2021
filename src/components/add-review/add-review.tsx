@@ -1,7 +1,7 @@
 import * as React from "react";
 import Breadcrumbs from "../breadcrumbs/breadcrumbs";
 import Logo from "../logo/logo";
-import UserBlock from "../userBlock/userBlock";
+import UserBlock from "../user-block/user-block";
 
 const AddReview = () => {
   return (

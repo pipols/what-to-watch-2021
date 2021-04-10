@@ -1,5 +1,6 @@
 import {extend} from "../../utils/utils";
 import {adapterMovie, adapterMovies} from "../../adapters/movie";
+import NameSpace from "../name-space";
 
 const initialState = {
   movies: [],
@@ -13,6 +14,7 @@ const ActionType = {
   LOAD_PROMO_MOVIE: `LOAD_PROMO_MOVIE`,
   LOAD_FAVORITES_MOVIES: `LOAD_FAVORITES_MOVIES`,
   LOAD_COMMENTS: `LOAD_COMMENTS`,
+  MERGE_MOVIE: `MERGE_MOVIE`,
 };
 
 const ActionCreator = {
@@ -31,6 +33,10 @@ const ActionCreator = {
   loadComments: (comments) => ({
     type: ActionType.LOAD_COMMENTS,
     payload: comments,
+  }),
+  mergeMovie: (movie) => ({
+    type: ActionType.MERGE_MOVIE,
+    payload: movie
   }),
 };
 
@@ -62,17 +68,17 @@ const DataOperation = {
         dispatch(ActionCreator.loadComments(data));
       });
   },
-  // postFavorite: (id, status) => (dispatch, getState, api) => {
-  //   return api.post(`favorite/${id}/${status}`)
-  //     .then(({data}) => {
-  //       const film = adapterFilm(data);
-  //       const store = getState();
-  //       if (store[NameSpace.DATA].promoMovie.id === id) {
-  //         dispatch(ActionCreator.mergePromoFilm(film));
-  //       }
-  //       dispatch(ActionCreator.mergeFilm(film));
-  //     }).catch(({response}) => errorPopup(response));
-  // },
+  postFavorite: (id, status) => (dispatch, getState, api) => {
+    return api.post(`favorite/${id}/${status}`)
+      .then(({data}) => {
+        const movie = adapterMovie(data);
+        const store = getState();
+        if (store[NameSpace.DATA].promoMovie.id === id) {
+          dispatch(ActionCreator.loadPromoMovie(movie));
+        }
+        dispatch(ActionCreator.mergeMovie(movie));
+      });
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -92,6 +98,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_COMMENTS:
       return extend(state, {
         comments: action.payload
+      });
+    case ActionType.MERGE_MOVIE:
+      return extend(state, {
+        movies: state.movies
+          .map((movie) => movie.id === action.payload.id ? action.payload : movie)
       });
   }
 
