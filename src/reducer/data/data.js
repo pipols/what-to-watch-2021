@@ -101,7 +101,7 @@ const reducer = (state = initialState, action) => {
       });
     case ActionType.MERGE_MOVIE:
       return extend(state, {
-        films: state.movies
+        movies: state.movies
           .map((movie) => movie.id === action.payload.id ? action.payload : movie)
       });
   }

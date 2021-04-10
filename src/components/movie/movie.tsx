@@ -13,7 +13,8 @@ import Preloader from "../preloader/preloader";
 import {TabName} from "../../const/common";
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import {DataOperation} from "../../reducer/data/data";
-import MovieCardButtons from "../movie-card-buttons/movie-card-buttons";
+import PlayButton from "../buttons/play/play";
+import InListButton from "../buttons/inList/inList";
 
 const activeClass = `movie-nav__item--active`;
 
@@ -67,7 +68,10 @@ class Movie extends React.PureComponent<Props> {
                 <span className="movie-card__genre">{movie.genre}</span>
                 <span className="movie-card__year">{movie.released}</span>
               </p>
-              <MovieCardButtons movieId={movie.id} />
+              <div className="movie-card__buttons">
+                <PlayButton movieId={movie.id} />
+                <InListButton isFavorite={movie.isFavorite} id={movie.id} />
+              </div>
             </div>
           </div>
         </div>
