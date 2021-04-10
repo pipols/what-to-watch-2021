@@ -6,10 +6,10 @@ import {DataOperation} from "../../reducer/data/data";
 import {connect} from "react-redux";
 import {getFavoritesMovies} from "./../../reducer/data/selector";
 import {MovieType} from "../../types";
-import Preloader from "./../preloader/preloader";
+import MovieCard from "../movie-card/movie-card";
 
 type Props = {
-  onFavoriteMoviesMount: () => any;
+  onFavoriteMoviesMount: () => void;
   favoritesMovies: MovieType[];
 };
 
@@ -20,46 +20,27 @@ class MyList extends React.PureComponent<Props> {
 
   render() {
     const {favoritesMovies} = this.props;
-    console.log(favoritesMovies)
     return (
-        <div className="user-page">
-          <header className="page-header user-page__head">
-            <Logo />
-            <h1 className="page-title user-page__title">My list</h1>
-            <UserBlock />
-          </header>
+      <div className="user-page">
 
-          <section className="catalog">
-            <h2 className="catalog__title visually-hidden">Catalog</h2>
+        <header className="page-header user-page__head">
+          <Logo />
+          <h1 className="page-title user-page__title">My list</h1>
+          <UserBlock />
+        </header>
 
-            <div className="catalog__movies-list">
+        <section className="catalog">
+          <h2 className="catalog__title visually-hidden">Catalog</h2>
+          <div className="catalog__movies-list">
+            {favoritesMovies.map((movie) => <MovieCard movie={movie} key={movie.id} />)}
+          </div>
+        </section>
 
-              <article className="small-movie-card catalog__movies-card">
-                <div className="small-movie-card__image">
-                  <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-                </div>
-                <h3 className="small-movie-card__title">
-                  <a className="small-movie-card__link" href="movie-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-                </h3>
-              </article>
-
-              <article className="small-movie-card catalog__movies-card">
-                <div className="small-movie-card__image">
-                  <img src="img/shutter-island.jpg" alt="Shutter Island" width="280" height="175" />
-                </div>
-                <h3 className="small-movie-card__title">
-                  <a className="small-movie-card__link" href="movie-page.html">Shutter Island</a>
-                </h3>
-              </article>
-
-            </div>
-          </section>
-
-          <Footer />
-        </div>
-      );
-    }
-};
+        <Footer />
+      </div>
+    );
+  }
+}
 
 const mapStateToProps = (state) => ({
   favoritesMovies: getFavoritesMovies(state),
@@ -67,7 +48,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onFavoriteMoviesMount() {
-    dispatch(DataOperation.loadFavoritesMovies())
+    dispatch(DataOperation.loadFavoritesMovies());
   }
 });
 
