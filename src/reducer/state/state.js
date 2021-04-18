@@ -4,6 +4,7 @@ import {DEFAULT_GENRE, MoviesCount} from "../../const/common";
 const initialState = {
   activeGenre: DEFAULT_GENRE,
   shownMoviesStack: MoviesCount.DEFAULT,
+  isReviewFormDisabled: false,
 };
 
 const ActionType = {
@@ -11,6 +12,7 @@ const ActionType = {
   RESET_GENRE: `RESET_GENRE`,
   ADD_MOVIES_STACK: `ADD_MOVIES_STACK`,
   RESET_MOVIES_STACK: `RESET_MOVIES_STACK`,
+  SET_REVIEW_FORM_DISABLED_STATUS: `SET_REVIEW_FORM_DISABLED_STATUS`,
 };
 
 const ActionCreator = {
@@ -28,7 +30,11 @@ const ActionCreator = {
   resetMoviesStack: () => ({
     type: ActionType.RESET_MOVIES_STACK,
     payload: MoviesCount.DEFAULT,
-  })
+  }),
+  setReviewFormDisabledStatus: (status) => ({
+    type: ActionType.SET_REVIEW_FORM_DISABLED_STATUS,
+    payload: status,
+  }),
 };
 
 const reducer = (state = initialState, action) => {
@@ -44,6 +50,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.RESET_MOVIES_STACK:
       return extend(state, {
         shownMoviesStack: action.payload
+      });
+    case ActionType.SET_REVIEW_FORM_DISABLED_STATUS:
+      return extend(state, {
+        isReviewFormDisabled: action.payload
       });
   }
 

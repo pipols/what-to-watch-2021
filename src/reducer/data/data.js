@@ -1,6 +1,7 @@
 import {extend} from "../../utils/utils";
 import {adapterMovie, adapterMovies} from "../../adapters/movie";
 import NameSpace from "../name-space";
+import {ActionCreator as ActionCreatorState} from "../state/state";
 
 const initialState = {
   movies: [],
@@ -78,6 +79,18 @@ const DataOperation = {
         }
         dispatch(ActionCreator.mergeMovie(movie));
       });
+  },
+  postComment: (id, comment) => (dispatch, getState, api) => {
+    return api.post(`/comments/${id}`, {
+      rating: comment.rating,
+      comment: comment.comment,
+    })
+    .then(() => {
+      dispatch(ActionCreatorState.setReviewFormDisabledStatus(false));
+    })
+    .catch(() => {
+      dispatch(ActionCreatorState.setReviewFormDisabledStatus(false));
+    });
   },
 };
 

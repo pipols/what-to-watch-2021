@@ -6,11 +6,11 @@ import history from "../../history";
 import SignIn from "../signIn/signIn";
 import MyList from "../mylist/myList";
 import Movie from "../movie/movie";
-import Review from "../add-review/add-review";
 import Player from "../player/player";
 import PrivateRoute from "./../private-route/private-route";
 import {AuthorizationStatus, AppRoute} from "../../const/common";
 import {connect} from "react-redux";
+import AddReview from "./../add-review/add-review";
 
 type Props = {
   authorizationStatus: AuthorizationStatus;
@@ -36,15 +36,21 @@ const App = (props: Props) => {
           render={() => (<MyList />)}
         />
 
-        <Route path="/films/:id?" exact render={({match}) => {
-          const id = +match.params.id;
-          return <Movie movieId={id} />;
-        }}/>
+        <Route
+          exact
+          path="/films/:id?"
+          render={({match}) => {
+            const id = +match.params.id;
+            return <Movie movieId={id} />;
+          }}/>
 
-
-        <Route path="/films/:id/review" >
-          <Review />
-        </Route>
+        <PrivateRoute
+          exact
+          path="/films/:id/review"
+          render={({match}) => {
+            const id = +match.params.id;
+            return <AddReview movieId={id} />;
+          }}/>
 
         <Route path="/player/:id" exact render={({match}) => {
           const id = +match.params.id;
