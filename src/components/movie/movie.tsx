@@ -15,6 +15,7 @@ import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import {DataOperation} from "../../reducer/data/data";
 import PlayButton from "../buttons/play/play";
 import InListButton from "../buttons/inList/inList";
+import {Link} from "react-router-dom";
 
 const activeClass = `movie-nav__item--active`;
 
@@ -71,6 +72,7 @@ class Movie extends React.PureComponent<Props> {
               <div className="movie-card__buttons">
                 <PlayButton movieId={movie.id} />
                 <InListButton isFavorite={movie.isFavorite} id={movie.id} />
+                <Link to={`/films/${movie.id}/review`} className="btn movie-card__button">Add review</Link>
               </div>
             </div>
           </div>
